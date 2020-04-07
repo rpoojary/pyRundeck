@@ -1,5 +1,4 @@
-import requests, re, sys
-from dmLogging import dmLogging
+import requests, re, sys, logging
 
 def getSessionID(servername:str,username:str,password:str)->requests.Session:
     sessionRequest = requests.Session()
@@ -56,7 +55,7 @@ def createRundeckACL(serverName, sessionID, jobID,jobGroup,ldapGroup):
 
 def rdPrintOut(returncode,stdout,error):
     if returncode != 200 :
-        dmLogging.logging.error(error.decode())
+        logging.logging.error(error.decode())
         sys.exit(1)
     else:
-        dmLogging.logging.debug(stdout.decode())
+        logging.logging.debug(stdout.decode())
